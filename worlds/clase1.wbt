@@ -1,0 +1,46 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation 0.18545077224470538 0.08857035016047249 -0.9786538224246067 2.2671188614541307
+  position 1.4105779688043332 1.59737808211855 0.986278483259534
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+}
+Robot {
+  translation 0 0 0.22
+  children [
+    DEF cajax Solid {
+      translation 0 0 0.04100000000000003
+      rotation 0 1 0 0.34033920413889435
+      children [
+        Shape {
+          geometry Box {
+            size 0.1 0.1 0.1
+          }
+        }
+      ]
+    }
+  ]
+  controller "controller_1"
+  supervisor TRUE
+}
+DEF cajay Solid {
+  translation 0.28 0 0.07
+  children [
+    Shape {
+      geometry Box {
+        size 0.1 0.1 0.1
+      }
+    }
+  ]
+}
