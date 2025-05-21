@@ -1,0 +1,51 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/appearances/protos/SolarCell.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/appearances/protos/MetalPipePaint.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.09148696013651847 0.2006015633618184 0.9753917925130258 0.8747667851661705
+  position -1.324093861917438 -2.1114427112125993 1.044563055974232
+}
+TexturedBackground {
+  texture "twilight_cloudy_empty"
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 2 2
+}
+Robot {
+  controller "my_controller"
+  supervisor TRUE
+}
+DEF ball1 Solid {
+  translation 0.5660047101078587 0 0.7505610611472706
+  children [
+    Shape {
+      appearance SolarCell {
+      }
+      geometry Sphere {
+        radius 0.1
+      }
+    }
+  ]
+}
+DEF ball2 Solid {
+  translation 0.28434971243205137 0 0.8538589908663167
+  children [
+    Shape {
+      appearance MetalPipePaint {
+      }
+      geometry Sphere {
+        radius 0.1
+      }
+    }
+  ]
+  name "solid(1)"
+}
