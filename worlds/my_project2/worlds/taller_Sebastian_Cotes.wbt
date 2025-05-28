@@ -3,14 +3,15 @@
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/appearances/protos/SolarCell.proto"
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/appearances/protos/MetalPipePaint.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/appearances/protos/ReflectiveSurface.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/appearances/protos/VarnishedPine.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/appearances/protos/Parquetry.proto"
 
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.09148696013651847 0.2006015633618184 0.9753917925130258 0.8747667851661705
-  position -1.324093861917438 -2.1114427112125993 1.044563055974232
+  orientation -0.06414297704295666 -0.26943508906632757 0.9608800191886012 5.79749655696464
+  position -6.104112053537019 4.263726846930888 1.3725456008588335
 }
 TexturedBackground {
   texture "twilight_cloudy_empty"
@@ -18,34 +19,171 @@ TexturedBackground {
 TexturedBackgroundLight {
 }
 RectangleArena {
-  floorSize 2 2
+  floorSize 10 10
+  floorAppearance Parquetry {
+    type "dark strip"
+  }
 }
 Robot {
   controller "my_controller"
   supervisor TRUE
 }
-DEF ball1 Solid {
+DEF sol Solid {
   translation 0.5660047101078587 0 0.7505610611472706
   children [
     Shape {
-      appearance SolarCell {
+      appearance ReflectiveSurface {
       }
       geometry Sphere {
-        radius 0.1
+        radius 0.3
       }
     }
   ]
 }
-DEF ball2 Solid {
-  translation 0.28434971243205137 0 0.8538589908663167
+DEF mercurio Solid {
+  translation 0.7085478571798935 0.3737398175506595 0.7505610611472706
   children [
     Shape {
-      appearance MetalPipePaint {
+      appearance VarnishedPine {
       }
       geometry Sphere {
-        radius 0.1
+        radius 0.01
       }
     }
   ]
   name "solid(1)"
+}
+DEF venus Solid {
+  translation 0.13352684402379417 -0.5504206530894111 0.7505610611472706
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 1 0.333333 0
+        }
+      }
+      geometry Sphere {
+        radius 0.02
+      }
+    }
+  ]
+  name "solid(2)"
+}
+DEF tierra Solid {
+  translation -0.11856873240111587 0.7289438948310162 0.7505610611472706
+  children [
+    Shape {
+      appearance Appearance {
+        texture ImageTexture {
+          url [
+            "../img/tierra.png"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.02
+      }
+    }
+  ]
+  name "solid(3)"
+}
+DEF marte Solid {
+  translation 1.8012790120910651 0.8509391275878093 0.7505610611472706
+  children [
+    Shape {
+      appearance Appearance {
+        texture ImageTexture {
+          url [
+            "../img/marte.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.015
+      }
+    }
+  ]
+  name "solid(4)"
+}
+DEF jupiter Solid {
+  translation -0.30768417566801154 -2.019075959658705 0.7505610611472706
+  children [
+    Shape {
+      appearance Appearance {
+        texture ImageTexture {
+          url [
+            "../img/jupiter.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.07
+      }
+    }
+  ]
+  name "solid(5)"
+}
+DEF saturno Solid {
+  translation -1.80750961100843 1.4854055902196814 0.7505610611472706
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.960784 0.72549 0.407843
+        }
+      }
+      geometry Sphere {
+        radius 0.06
+      }
+    }
+  ]
+  name "solid(6)"
+}
+DEF urano Solid {
+  translation 0.04019014478624083 3.460277307224905 0.7505610611472706
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.145098 0.607843 0.733333
+        }
+      }
+      geometry Sphere {
+        radius 0.04
+      }
+    }
+  ]
+  name "solid(7)"
+}
+DEF neptuno Solid {
+  translation 1.669875405024757 3.8446676695006663 0.7505610611472706
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.313726 0.427451 0.701961
+        }
+      }
+      geometry Sphere {
+        radius 0.04
+      }
+    }
+  ]
+  name "solid(8)"
+}
+DEF pluton Solid {
+  translation 3.4992441444007762 3.412639216370369 0.7505610611472706
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.462745 0.372549 0.341176
+        }
+      }
+      geometry Sphere {
+        radius 0.008
+      }
+    }
+  ]
+  name "solid(9)"
 }
