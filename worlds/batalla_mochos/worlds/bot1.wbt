@@ -1,0 +1,171 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation 0.09984337672596219 0.08799992396965121 -0.991104088128635 1.7055604593554856
+  position 0.23805135179223189 0.9898694777343084 0.31133242291341595
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+DEF arena RectangleArena {
+  wallHeight 0.05
+}
+DEF robot Robot {
+  translation 0.17031412296142887 -0.10411251665316458 0.04896897668584605
+  rotation -0.4022369039825416 0.8205546746532747 0.40607326799384136 1.7722304651645742
+  children [
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 1058.7166345290489
+        anchor -0.075 0 0.06
+      }
+      device [
+        PositionSensor {
+          name "ps"
+        }
+        RotationalMotor {
+          name "motor"
+        }
+      ]
+      endPoint Solid {
+        translation -0.0750000541185909 8.180606040413562e-06 0.06000838990572897
+        rotation 0.9999999999998023 -5.46273042673479e-08 -6.266491640400514e-07 3.1415029165003676
+        children [
+          Solid {
+            translation -0.05 0.075 0
+            children [
+              DEF arm Shape {
+                appearance PBRAppearance {
+                  baseColor 0 0 0
+                }
+                geometry Box {
+                  size 0.05 0.2 0.05
+                }
+              }
+            ]
+            boundingObject USE arm
+            physics Physics {
+            }
+          }
+          DEF axle Shape {
+            appearance PBRAppearance {
+              baseColor 0.752941 0.109804 0.156863
+            }
+            geometry Box {
+              size 0.05 0.05 0.05
+            }
+          }
+        ]
+        boundingObject USE axle
+        physics Physics {
+        }
+        linearVelocity -0.10218119378655552 -0.1530706470218459 -9.368094817051802e-06
+        angularVelocity -0.008236234862503652 0.01025595569341562 -2.999971888123023
+      }
+    }
+    Pose {
+      children [
+        DEF cuerpo Shape {
+          appearance PBRAppearance {
+            baseColor 0.14902 0.635294 0.411765
+          }
+          geometry Box {
+            size 0.1 0.1 0.2
+          }
+        }
+      ]
+    }
+  ]
+  boundingObject USE cuerpo
+  physics Physics {
+  }
+  controller "arm_tutorial"
+  linearVelocity 0.00025840529275162477 -0.0004584029378937266 -2.8911851053093136e-06
+  angularVelocity 0.009158869827049602 0.005153156734810664 -2.6588277410059168e-05
+}
+Robot {
+  name "god"
+  controller "god"
+  supervisor TRUE
+}
+DEF robot2 Robot {
+  translation -0.17307282786767764 0.1545062391081504 0.10577808594917107
+  rotation -0.9177444144427467 0.39717072379864055 0.0007784063232012902 -3.0970718004690756
+  children [
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 1589.792542792603
+        anchor -0.075 0 0.06
+      }
+      device [
+        PositionSensor {
+          name "ps2"
+        }
+        RotationalMotor {
+          name "motor2"
+        }
+      ]
+      endPoint Solid {
+        translation -0.0750000541185909 -6.865874610721958e-06 0.05999050407460226
+        rotation -0.9999999999621089 8.70451595676113e-06 -1.1820540709860767e-07 6.136525237473291
+        children [
+          Solid {
+            translation -0.05 0.075 0
+            children [
+              DEF arm Shape {
+                appearance PBRAppearance {
+                  baseColor 0.109804 0.443137 0.847059
+                }
+                geometry Box {
+                  size 0.05 0.2 0.05
+                }
+              }
+            ]
+            boundingObject USE arm
+            physics Physics {
+            }
+          }
+          DEF axle Shape {
+            appearance PBRAppearance {
+              baseColor 0.752941 0.109804 0.156863
+            }
+            geometry Box {
+              size 0.05 0.05 0.05
+            }
+          }
+        ]
+        boundingObject USE axle
+        physics Physics {
+        }
+        linearVelocity 0.03189729377650968 0.03680583592978656 0.10060451962018561
+        angularVelocity 1.1109165250286943 -1.4223588187651248 0.022699206371415735
+      }
+    }
+    Pose {
+      children [
+        DEF cuerpo Shape {
+          appearance PBRAppearance {
+            baseColor 0.878431 0.105882 0.141176
+          }
+          geometry Box {
+            size 0.1 0.1 0.2
+          }
+        }
+      ]
+    }
+  ]
+  name "robot2"
+  boundingObject USE cuerpo
+  physics Physics {
+  }
+  controller "arm_tutorial2"
+  linearVelocity 0.07560621498634479 0.09559260136017622 0.21714026004847092
+  angularVelocity -0.9488958516363057 0.7584622219862625 -0.013300291658311772
+}
