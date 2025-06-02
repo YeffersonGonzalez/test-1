@@ -53,6 +53,16 @@ lunas = {
 
     # Luna de la Tierra
     "luna_tierra": (robot.getFromDef("luna"), 0.1, 2.0, 0.5),
+
+    # Lunas de Urano
+    "titania": (robot.getFromDef("titania"), 0.15, 1.6, 0.3),
+    "oberon": (robot.getFromDef("oberon"), 0.18, 1.2, 0.3),
+
+    # Luna de Neptuno
+    "triton": (robot.getFromDef("triton"), 0.14, 1.4, 0.3),
+
+    # Luna de Plutón
+    "caronte": (robot.getFromDef("caronte"), 0.07, 2.2, 0.2),
 }
 
 
@@ -77,7 +87,7 @@ while robot.step(timestep) != -1:
         pos = np.array([x, 0, z])
         pos_global = sol_position + pos
         nodo.getField("translation").setSFVec3f(pos_global.tolist())
- 
+
         angulo_giro = v_rotacion * t
         nodo.getField("rotation").setSFRotation([0, 1, 0, angulo_giro])
 
@@ -87,6 +97,9 @@ while robot.step(timestep) != -1:
     "jupiter": np.array(robot.getFromDef("jupiter").getField("translation").getSFVec3f()),
     "saturno": np.array(robot.getFromDef("saturno").getField("translation").getSFVec3f()),
     "tierra": np.array(robot.getFromDef("tierra").getField("translation").getSFVec3f()),
+    "urano": np.array(robot.getFromDef("urano").getField("translation").getSFVec3f()),
+    "neptuno": np.array(robot.getFromDef("neptuno").getField("translation").getSFVec3f()),
+    "pluton": np.array(robot.getFromDef("pluton").getField("translation").getSFVec3f()),
     }
 
     for nombre, (nodo, radio, velocidad, v_rotacion) in lunas.items():
@@ -98,8 +111,14 @@ while robot.step(timestep) != -1:
             planeta_pos = pos_planetas["saturno"]
         elif nombre == "luna_tierra":
             planeta_pos = pos_planetas["tierra"]
+        elif nombre in ["titania", "oberon"]:
+            planeta_pos = pos_planetas["urano"]
+        elif nombre == "triton":
+            planeta_pos = pos_planetas["neptuno"]
+        elif nombre == "caronte":
+            planeta_pos = pos_planetas["pluton"]
         else:
-            continue
+            np.array([0, 0, 0])
 
         theta = velocidad * t
         x = radio * np.cos(theta)
