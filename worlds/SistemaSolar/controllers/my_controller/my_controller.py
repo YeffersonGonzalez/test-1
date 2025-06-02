@@ -22,18 +22,40 @@ def homogeneous_matrix(R, t):
 robot = Supervisor()
 timestep = int(robot.getBasicTimeStep())
 
-# Obtener nodos
-sol = robot.getFromDef("sol")
-mercurio = robot.getFromDef("mercurio")
-venus = robot.getFromDef("venus")
-tierra = robot.getFromDef("tierra")
-luna = robot.getFromDef("luna")
-marte = robot.getFromDef("marte")
-jupiter = robot.getFromDef("jupiter")
-saturno = robot.getFromDef("saturno")
-urano = robot.getFromDef("urano")
-neptuno = robot.getFromDef("neptuno")
-pluton = robot.getFromDef("pluton")
+#Diccionario de planetas con: (nodo, semieje mayor a, semieje menor b, velocidad órbita, velocidad rotación)
+planetas = {
+    "mercurio":  (robot.getFromDef("mercurio"), 0.40, 0.38, 1.6, 0.017),
+    "venus":     (robot.getFromDef("venus"),    0.70, 0.69, 1.2, -0.004),
+    "tierra":    (robot.getFromDef("tierra"),   1.00, 0.98, 1.0, 0.26),
+    "marte":     (robot.getFromDef("marte"),    1.50, 1.47, 0.8, 0.24),
+    "jupiter":   (robot.getFromDef("jupiter"),  2.20, 2.15, 0.5, 2.0),
+    "saturno":   (robot.getFromDef("saturno"),  2.80, 2.72, 0.3, 1.7),
+    "urano":     (robot.getFromDef("urano"),    3.50, 3.40, 0.2, 1.3),
+    "neptuno":   (robot.getFromDef("neptuno"),  4.00, 3.90, 0.15, 1.2),
+    "pluton":    (robot.getFromDef("pluton"),   4.50, 4.25, 0.1, 0.07)
+}
+
+# Diccionario de lunas con: (nodo,  radio, velocidad órbita, velocidad rotación)
+lunas = {
+    # Lunas de Marte
+    "fobos": (robot.getFromDef("fobos"), 0.05, 4.8, 0.3),
+    "deimos": (robot.getFromDef("deimos"), 0.08, 2.7, 0.25),
+
+    # Lunas de Júpiter
+    "io": (robot.getFromDef("io"), 0.12, 1.77, 0.6),
+    "europa": (robot.getFromDef("europa"), 0.16, 1.3, 0.5),
+    "ganimedes": (robot.getFromDef("ganimedes"), 0.20, 1.0, 0.4),
+    "calisto": (robot.getFromDef("calisto"), 0.24, 0.75, 0.35),
+
+    # Lunas de Saturno
+    "titán": (robot.getFromDef("titan"), 0.25, 0.6, 0.3),
+    "encélado": (robot.getFromDef("encelado"), 0.20, 1.1, 0.25),
+
+    # Luna de la Tierra
+    "luna_tierra": (robot.getFromDef("luna"), 0.1, 2.0, 0.5),
+}
+
+
 
 # Constantes
 #radius_orbit = 0.6   # radio de la órbita de 2 alrededor de 1
@@ -41,110 +63,50 @@ pluton = robot.getFromDef("pluton")
 
 # Loop principal
 while robot.step(timestep) != -1:
-    t = robot.getTime()  # tiempo actual en segundos
+    t = robot.getTime()
 
-    # 1. Obtener posición fija de caja 1
-    trans_a = np.array(sol.getField("translation").getSFVec3f())
-    H_wa = homogeneous_matrix(np.eye(3), trans_a)
-    
-    # Obtener posición de la Tierra
-    trans_tierra = np.array(tierra.getField("translation").getSFVec3f())
-    H_wt = homogeneous_matrix(np.eye(3), trans_tierra)  # Matriz homogénea de la Tierra
+    # Obtener posición del sol
+    sol = robot.getFromDef("sol")
+    sol_position = np.array(sol.getField("translation").getSFVec3f())
+    H_wa = homogeneous_matrix(np.eye(3), sol_position)
 
-    # 2. Rotación incremental
-    theta = 1.6 * t
-    R = rotation_matrix_y(theta)
-
-    # 3. Posición relativa de 2 respecto a 1 (en el eje X)
-    t_ab = np.array([0.4, 0, 0])
-    H_ab = homogeneous_matrix(R, R @ t_ab)
-
-    # 4. Transformar a coordenadas globales
-    H_wb = H_wa @ H_ab
-    pos_b = H_wb[:3, 3]
-    
+    for nombre, (nodo, a, b, velocidad, v_rotacion) in planetas.items():
+        theta = velocidad * t
+        x = a * np.cos(theta)
+        z = b * np.sin(theta)
+        pos = np.array([x, 0, z])
+        pos_global = sol_position + pos
+        nodo.getField("translation").setSFVec3f(pos_global.tolist())
  
-    # Mercurio
-    mercurio.getField("translation").setSFVec3f(pos_b.tolist())
+        angulo_giro = v_rotacion * t
+        nodo.getField("rotation").setSFRotation([0, 1, 0, angulo_giro])
 
-    # Venus
-    theta = 1.2 * t
-    R = rotation_matrix_y(theta)
-    t_ab = np.array([0.7, 0, 0])
-    H_ab = homogeneous_matrix(R, R @ t_ab)
-    H_wb = H_wa @ H_ab
-    pos_b = H_wb[:3, 3]
-    venus.getField("translation").setSFVec3f(pos_b.tolist())
+    # Obtener posición de la tierra
+    pos_planetas = {
+    "marte": np.array(robot.getFromDef("marte").getField("translation").getSFVec3f()),
+    "jupiter": np.array(robot.getFromDef("jupiter").getField("translation").getSFVec3f()),
+    "saturno": np.array(robot.getFromDef("saturno").getField("translation").getSFVec3f()),
+    "tierra": np.array(robot.getFromDef("tierra").getField("translation").getSFVec3f()),
+    }
 
-    # Tierra
-    theta = 1.0 * t
-    R = rotation_matrix_y(theta)
-    t_ab = np.array([1.0, 0, 0])
-    H_ab = homogeneous_matrix(R, R @ t_ab)
-    H_wb = H_wa @ H_ab
-    pos_b = H_wb[:3, 3]
-    tierra.getField("translation").setSFVec3f(pos_b.tolist())
-    
-    # Luna
-    theta = 3.0 * t 
-    R = rotation_matrix_y(theta)
-    t_luna = np.array([0.1, 0, 0])  
-    H_luna = homogeneous_matrix(R, R @ t_luna) 
-    H_wl = H_wt @ H_luna
-    pos_luna = H_wl[:3, 3]
-    luna.getField("translation").setSFVec3f(pos_luna.tolist())
+    for nombre, (nodo, radio, velocidad, v_rotacion) in lunas.items():
+        if nombre in ["fobos", "deimos"]:
+            planeta_pos = pos_planetas["marte"]
+        elif nombre in ["io", "europa", "ganimedes", "calisto"]:
+            planeta_pos = pos_planetas["jupiter"]
+        elif nombre in ["titán", "encélado"]:
+            planeta_pos = pos_planetas["saturno"]
+        elif nombre == "luna_tierra":
+            planeta_pos = pos_planetas["tierra"]
+        else:
+            continue
 
+        theta = velocidad * t
+        x = radio * np.cos(theta)
+        z = radio * np.sin(theta)
+        pos_local = np.array([x, 0, z])
+        pos_global = planeta_pos + pos_local
+        nodo.getField("translation").setSFVec3f(pos_global.tolist())
 
-    # Marte
-    theta = 0.8 * t
-    R = rotation_matrix_y(theta)
-    t_ab = np.array([1.5, 0, 0])
-    H_ab = homogeneous_matrix(R, R @ t_ab)
-    H_wb = H_wa @ H_ab
-    pos_b = H_wb[:3, 3]
-    marte.getField("translation").setSFVec3f(pos_b.tolist())
-
-    # Júpiter
-    theta = 0.5 * t
-    R = rotation_matrix_y(theta)
-    t_ab = np.array([2.2, 0, 0])
-    H_ab = homogeneous_matrix(R, R @ t_ab)
-    H_wb = H_wa @ H_ab
-    pos_b = H_wb[:3, 3]
-    jupiter.getField("translation").setSFVec3f(pos_b.tolist())
-
-    # Saturno
-    theta = 0.3 * t
-    R = rotation_matrix_y(theta)
-    t_ab = np.array([2.8, 0, 0])
-    H_ab = homogeneous_matrix(R, R @ t_ab)
-    H_wb = H_wa @ H_ab
-    pos_b = H_wb[:3, 3]
-    saturno.getField("translation").setSFVec3f(pos_b.tolist())
-
-    # Urano
-    theta = 0.2 * t
-    R = rotation_matrix_y(theta)
-    t_ab = np.array([3.5, 0, 0])
-    H_ab = homogeneous_matrix(R, R @ t_ab)
-    H_wb = H_wa @ H_ab
-    pos_b = H_wb[:3, 3]
-    urano.getField("translation").setSFVec3f(pos_b.tolist())
-
-    # Neptuno
-    theta = 0.15 * t
-    R = rotation_matrix_y(theta)
-    t_ab = np.array([4.0, 0, 0])
-    H_ab = homogeneous_matrix(R, R @ t_ab)
-    H_wb = H_wa @ H_ab
-    pos_b = H_wb[:3, 3]
-    neptuno.getField("translation").setSFVec3f(pos_b.tolist())
-
-    # Plutón
-    theta = 0.1 * t
-    R = rotation_matrix_y(theta)
-    t_ab = np.array([4.5, 0, 0])
-    H_ab = homogeneous_matrix(R, R @ t_ab)
-    H_wb = H_wa @ H_ab
-    pos_b = H_wb[:3, 3]
-    pluton.getField("translation").setSFVec3f(pos_b.tolist())
+        angulo_giro = v_rotacion * t
+        nodo.getField("rotation").setSFRotation([0, 1, 0, angulo_giro])
