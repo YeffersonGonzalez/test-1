@@ -1,6 +1,5 @@
 #VRML_SIM R2025a utf8
 
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/appearances/protos/VarnishedPine.proto"
 
 WorldInfo {
@@ -9,35 +8,41 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation -0.012271843242505352 0.012601150149205712 0.9998452944722741 1.5447038536544149
-  position 0.2272564259373503 -12.79194374783597 0.025830251000771964
-}
-TexturedBackgroundLight {
+  orientation -0.8516042648180837 -0.519865450682837 -0.06715719864602535 3.059649067004047
+  position -2.903962278942781 -5.3387782011526985 -1.1310827310167548
 }
 Robot {
   controller "my_controller"
   supervisor TRUE
 }
 DEF sol Solid {
-  translation 0.566005 1.58 0.84056
   children [
-    Shape {
-      appearance Appearance {
-        texture ImageTexture {
-          url [
-            "../img/sol.jpg"
-          ]
+    PointLight {
+      attenuation 0 0 1
+      intensity 4
+      location 0 0.3 0
+    }
+    Transform {
+      children [
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "../img/sol.jpg"
+              ]
+            }
+          }
+          geometry Sphere {
+            radius 0.3
+          }
         }
-      }
-      geometry Sphere {
-        radius 0.3
-      }
+      ]
     }
   ]
 }
 DEF mercurio Solid {
-  translation 0.7449351694806995 1.58 0.5006989180992161
-  rotation 0 1 0 0.789344
+  translation -0.18934900882491157 0 -0.33472768776045964
+  rotation 0 1 0 0.37862400000000007
   children [
     Shape {
       appearance VarnishedPine {
@@ -50,8 +55,8 @@ DEF mercurio Solid {
   name "solid(1)"
 }
 DEF venus Solid {
-  translation 1.038279700778735 1.58 0.3312626837731566
-  rotation 0 1 0 -0.185728
+  translation -0.016002317010222294 0 0.6898196793326142
+  rotation 0 1 0 -0.08908800000000001
   children [
     Shape {
       appearance Appearance {
@@ -67,8 +72,8 @@ DEF venus Solid {
   name "solid(2)"
 }
 DEF luna Solid {
-  translation -0.18544386165717638 1.58 1.36753734907004
-  rotation 0 1 0 -1.9167412287183438
+  translation -0.8761848586425777 0 -0.21836752098059578
+  rotation 0 1 0 -1.4303706143591715
   children [
     Shape {
       appearance Appearance {
@@ -81,8 +86,8 @@ DEF luna Solid {
   name "solid(3)"
 }
 DEF tierra Solid {
-  translation -0.2040367080998403 1.58 1.4657936774217524
-  rotation 0 1 0 -0.4940506143591712
+  translation -0.9608197939204416 0 -0.2716303385038153
+  rotation 0 1 0 -0.4924653071795859
   children [
     Shape {
       appearance Appearance {
@@ -100,8 +105,8 @@ DEF tierra Solid {
   name "solid(10)"
 }
 DEF marte Solid {
-  translation 1.8420305098016132 1.58 0.06781344001966239
-  rotation 0 1 0 -1.4226906143591727
+  translation 0.7697115775925008 0 -1.2617073121220266
+  rotation 0 1 0 -0.9379053071795855
   children [
     Shape {
       appearance Appearance {
@@ -119,8 +124,8 @@ DEF marte Solid {
   name "solid(4)"
 }
 DEF jupiter Solid {
-  translation -0.17998365031472607 1.58 -1.1820642601743296
-  rotation 0 1 0 -1.3837796076938176
+  translation 0.307922228350815 0 -2.1288364776794437
+  rotation 0 1 0 0.5617028497429004
   children [
     Shape {
       appearance Appearance {
@@ -138,25 +143,25 @@ DEF jupiter Solid {
   name "solid(5)"
 }
 DEF saturno Solid {
-  translation 1.143028099541395 1.58 3.5021757836218486
-  rotation 0 1 0 -2.7470089933346244
+  translation 2.580696115294496 0 1.0552449140007711
+  rotation 0 1 0 0.16328815692248355
   children [
-    Shape {
-      appearance Appearance {
-        material Material {
-          diffuseColor 0.960784 0.72549 0.407843
+    Transform {
+      scale 1e-06 1e-06 1e-06
+      children [
+        CadShape {
+          url [
+            "../models/source/saturn_rings/saturn_rings.dae"
+          ]
         }
-      }
-      geometry Sphere {
-        radius 0.06
-      }
+      ]
     }
   ]
   name "solid(6)"
 }
 DEF urano Solid {
-  translation -2.9005386325984297 1.58 1.3095449927930338
-  rotation 0 1 0 -2.4702530717958595
+  translation -0.8929781145516966 0 -3.2874770601193015
+  rotation 0 1 0 -2.462326535897926
   children [
     Shape {
       appearance Appearance {
@@ -172,8 +177,8 @@ DEF urano Solid {
   name "solid(7)"
 }
 DEF neptuno Solid {
-  translation 3.6722305918173634 1.58 3.297746204932359
-  rotation 0 1 0 -0.8302677646162735
+  translation -3.9208949835809155 0 -0.7717804191759093
+  rotation 0 1 0 1.5936587712816568
   children [
     Shape {
       appearance Appearance {
@@ -189,8 +194,8 @@ DEF neptuno Solid {
   name "solid(8)"
 }
 DEF pluton Solid {
-  translation 0.2549029405216252 1.58 -3.3992714380882294
-  rotation 0 1 0 -3.032945307179586
+  translation -2.746223203402087 0 3.3668163680691845
+  rotation 0 1 0 1.5590400000000002
   children [
     Shape {
       appearance Appearance {
@@ -206,8 +211,8 @@ DEF pluton Solid {
   name "solid(9)"
 }
 DEF fobos Solid {
-  translation 1.792833662806434 1.58 0.07673925907076004
-  rotation 0 1 0 1.3632293856408282
+  translation 0.8195026467147319 0 -1.2571411938947799
+  rotation 0 1 0 0.3984146928204142
   children [
     Shape {
       appearance Appearance {
@@ -220,8 +225,8 @@ DEF fobos Solid {
   name "Fobos"
 }
 DEF deimos Solid {
-  translation 1.9185208386651846 1.58 0.044377792165534766
-  rotation 0 1 0 -0.9583706143591719
+  translation 0.6974731211895027 0 -1.296081799994752
+  rotation 0 1 0 -0.7151853071795857
   children [
     Shape {
       appearance Appearance {
@@ -234,8 +239,8 @@ DEF deimos Solid {
   name "Deimos"
 }
 DEF io Solid {
-  translation -0.074860175503617 1.58 -1.1241932394157659
-  rotation 0 1 0 2.7264587712816564
+  translation 0.2898079180453106 0 -2.0102115571856625
+  rotation 0 1 0 0.7968293856408284
   children [
     Shape {
       appearance Appearance {
@@ -248,8 +253,8 @@ DEF io Solid {
   name "Io"
 }
 DEF europa Solid {
-  translation -0.3052619065277368 1.58 -1.2815899278195517
-  rotation 0 1 0 -1.9167412287183438
+  translation 0.18343679324817466 0 -2.229352030940152
+  rotation 0 1 0 -1.4303706143591715
   children [
     Shape {
       appearance Appearance {
@@ -262,8 +267,8 @@ DEF europa Solid {
   name "Europa"
 }
 DEF ganimedes Solid {
-  translation -0.33399199193469414 1.58 -1.0544655504964209
-  rotation 0 1 0 -0.27675592153875783
+  translation 0.11575826956672669 0 -2.184271240639406
+  rotation 0 1 0 2.625614692820415
   children [
     Shape {
       appearance Appearance {
@@ -276,8 +281,8 @@ DEF ganimedes Solid {
   name "Ganimedes"
 }
 DEF calisto Solid {
-  translation -0.41151251549034673 1.58 -1.245265404076076
-  rotation 0 1 0 -2.598355921538758
+  translation 0.17745030145566473 0 -2.330274002218112
+  rotation 0 1 0 1.5120146928204141
   children [
     Shape {
       appearance Appearance {
@@ -290,8 +295,8 @@ DEF calisto Solid {
   name "Calisto"
 }
 DEF titan Solid {
-  translation 0.9142625164676934 1.58 3.6030038947860934
-  rotation 0 1 0 1.3632293856408282
+  translation 2.755440531078686 0 1.234030789148228
+  rotation 0 1 0 0.3984146928204142
   children [
     Shape {
       appearance Appearance {
@@ -304,8 +309,8 @@ DEF titan Solid {
   name "Titan"
 }
 DEF encelado Solid {
-  translation 1.280968696689969 1.58 3.6469942619258786
-  rotation 0 1 0 -0.9583706143591719
+  translation 2.741883345272057 0 0.9368444203693638
+  rotation 0 1 0 -0.7151853071795857
   children [
     Shape {
       appearance Appearance {
@@ -318,8 +323,8 @@ DEF encelado Solid {
   name "Encelado"
 }
 DEF titania Solid {
-  translation -2.8334398190431673 1.58 1.17538930256904
-  rotation 0 1 0 1.3632293856408282
+  translation -0.9639839928610384 0 -3.419606410551062
+  rotation 0 1 0 0.3984146928204142
   children [
     Shape {
       appearance Appearance {
@@ -332,8 +337,8 @@ DEF titania Solid {
   name "Titania"
 }
 DEF oberon Solid {
-  translation -2.779096566683898 1.58 1.1766848233425529
-  rotation 0 1 0 1.3632293856408282
+  translation -0.8970929960686109 0 -3.107524100293402
+  rotation 0 1 0 0.3984146928204142
   children [
     Shape {
       appearance Appearance {
@@ -346,8 +351,8 @@ DEF oberon Solid {
   name "Oberon"
 }
 DEF triton Solid {
-  translation 3.592932333028844 1.58 3.4131229190176064
-  rotation 0 1 0 1.3632293856408282
+  translation -3.784747101703797 0 -0.8043956650031933
+  rotation 0 1 0 0.3984146928204142
   children [
     Shape {
       appearance Appearance {
@@ -360,8 +365,8 @@ DEF triton Solid {
   name "Triton"
 }
 DEF caronte Solid {
-  translation 0.2514995697175932 1.58 -3.3293542222743095
-  rotation 0 1 0 3.003214692820414
+  translation -2.7252885725246503 0 3.300020101481706
+  rotation 0 1 0 -1.8287853071795857
   children [
     Shape {
       appearance Appearance {
