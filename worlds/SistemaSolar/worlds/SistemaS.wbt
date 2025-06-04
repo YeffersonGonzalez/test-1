@@ -8,8 +8,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation -0.8516042648180837 -0.519865450682837 -0.06715719864602535 3.059649067004047
-  position -2.903962278942781 -5.3387782011526985 -1.1310827310167548
+  orientation 0.005118580675814204 0.005217330948192481 -0.9999732894380939 1.5511628440476968
+  position -0.3168088140747377 20.67278391434986 -0.3322584962567016
 }
 Robot {
   controller "my_controller"
@@ -22,7 +22,7 @@ DEF sol Solid {
       intensity 4
       location 0 0.3 0
     }
-    Transform {
+    Pose {
       children [
         Shape {
           appearance Appearance {
@@ -41,8 +41,8 @@ DEF sol Solid {
   ]
 }
 DEF mercurio Solid {
-  translation -0.18934900882491157 0 -0.33472768776045964
-  rotation 0 1 0 0.37862400000000007
+  translation 0.19748450009697793 0 0.3304578410022308
+  rotation 0 0.999801921931499 0.01990268580068666 0.169184
   children [
     Shape {
       appearance VarnishedPine {
@@ -55,8 +55,8 @@ DEF mercurio Solid {
   name "solid(1)"
 }
 DEF venus Solid {
-  translation -0.016002317010222294 0 0.6898196793326142
-  rotation 0 1 0 -0.08908800000000001
+  translation 0.5680954863274382 0 -0.4031408968188943
+  rotation 0 0.9998885794771503 0.014927445567359877 -0.039808
   children [
     Shape {
       appearance Appearance {
@@ -72,11 +72,13 @@ DEF venus Solid {
   name "solid(2)"
 }
 DEF luna Solid {
-  translation -0.8761848586425777 0 -0.21836752098059578
-  rotation 0 1 0 -1.4303706143591715
+  translation -0.814836966306323 0 -0.4061092687513494
+  rotation 0 1 0 -1.3071853071795863
   children [
     Shape {
       appearance Appearance {
+        material Material {
+        }
       }
       geometry Sphere {
         radius 0.008
@@ -86,11 +88,13 @@ DEF luna Solid {
   name "solid(3)"
 }
 DEF tierra Solid {
-  translation -0.9608197939204416 0 -0.2716303385038153
-  rotation 0 1 0 -0.4924653071795859
+  translation -0.8642080913305674 0 -0.49307185848877855
+  rotation 0 0.9997147717247062 0.02388252908337933 2.58752
   children [
     Shape {
       appearance Appearance {
+        material Material {
+        }
         texture ImageTexture {
           url [
             "../img/tierra.png"
@@ -105,11 +109,13 @@ DEF tierra Solid {
   name "solid(10)"
 }
 DEF marte Solid {
-  translation 0.7697115775925008 0 -1.2617073121220266
-  rotation 0 1 0 -0.9379053071795855
+  translation -0.16111612818303425 0 1.4614956538242019
+  rotation 0 0.999801921931499 0.01990268580068666 2.38848
   children [
     Shape {
       appearance Appearance {
+        material Material {
+        }
         texture ImageTexture {
           url [
             "../img/marte.jpg"
@@ -124,14 +130,37 @@ DEF marte Solid {
   name "solid(4)"
 }
 DEF jupiter Solid {
-  translation 0.307922228350815 0 -2.1288364776794437
-  rotation 0 1 0 0.5617028497429004
+  translation -2.173287155744329 0 0.3340256689649941
+  rotation 0 0.9999504792567228 0.009951835722645288 1.366429385640826
   children [
     Shape {
       appearance Appearance {
+        material Material {
+        }
         texture ImageTexture {
           url [
             "../img/jupiter.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.1
+      }
+    }
+  ]
+  name "solid(5)"
+}
+DEF saturno Solid {
+  translation -1.1407159104079283 0 2.4840412919723516
+  rotation 0 0.999968306630133 0.00796151588984444 0.3712293856408273
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../models/textures/saturn.jpg"
           ]
         }
       }
@@ -140,28 +169,80 @@ DEF jupiter Solid {
       }
     }
   ]
-  name "solid(5)"
-}
-DEF saturno Solid {
-  translation 2.580696115294496 0 1.0552449140007711
-  rotation 0 1 0 0.16328815692248355
-  children [
-    Transform {
-      scale 1e-06 1e-06 1e-06
-      children [
-        CadShape {
-          url [
-            "../models/source/saturn_rings/saturn_rings.dae"
-          ]
-        }
-      ]
-    }
-  ]
   name "solid(6)"
 }
+DEF anillosaturno Solid {
+  translation -1.1407159104079283 0 2.4840412919723516
+  rotation 0 0.999968306630133 0.00796151588984444 0
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          transparency 0.08
+        }
+        texture ImageTexture {
+          url [
+            "../img/saturnoA.jpg"
+          ]
+        }
+      }
+      geometry Cylinder {
+        height 0.001
+        radius 0.14
+      }
+    }
+  ]
+  name "solid(160)"
+}
+DEF anillonep Solid {
+  translation 0.3116690800755937 0 3.888143329956976
+  rotation 0 0.9999955430996307 0.0029855955644914342 1.9904000000000002
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          transparency 0.8
+        }
+        texture ImageTexture {
+          url [
+            "../img/UranA.png"
+          ]
+        }
+      }
+      geometry Cylinder {
+        height 0.0008
+        radius 0.1
+      }
+    }
+  ]
+  name "anillonep"
+}
+DEF anillourano Solid {
+  translation -0.7657288646912888 0 3.3176325659784656
+  rotation 0 0.9999876197375452 0.004975979465254393 -1.3071853071795863
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          transparency 0.4
+        }
+        texture ImageTexture {
+          url [
+            "../img/UranA.png"
+          ]
+        }
+      }
+      geometry Cylinder {
+        height 0.001
+        radius 0.06
+      }
+    }
+  ]
+  name "solid(162)"
+}
 DEF urano Solid {
-  translation -0.8929781145516966 0 -3.2874770601193015
-  rotation 0 1 0 -2.462326535897926
+  translation -0.7657288646912888 0 3.3176325659784656
+  rotation 0 0.9999876197375452 0.004975979465254393 -1.619170614359172
   children [
     Shape {
       appearance Appearance {
@@ -177,8 +258,8 @@ DEF urano Solid {
   name "solid(7)"
 }
 DEF neptuno Solid {
-  translation -3.9208949835809155 0 -0.7717804191759093
-  rotation 0 1 0 1.5936587712816568
+  translation 0.3116690800755937 0 3.888143329956976
+  rotation 0 0.9999955430996307 0.0029855955644914342 -1.619170614359172
   children [
     Shape {
       appearance Appearance {
@@ -187,15 +268,15 @@ DEF neptuno Solid {
         }
       }
       geometry Sphere {
-        radius 0.04
+        radius 0.05
       }
     }
   ]
   name "solid(8)"
 }
 DEF pluton Solid {
-  translation -2.746223203402087 0 3.3668163680691845
-  rotation 0 1 0 1.5590400000000002
+  translation 2.4495080706658316 0 3.565188362378608
+  rotation 0 0.9999995047885208 0.00099519983572184 0.69664
   children [
     Shape {
       appearance Appearance {
@@ -211,11 +292,13 @@ DEF pluton Solid {
   name "solid(9)"
 }
 DEF fobos Solid {
-  translation 0.8195026467147319 0 -1.2571411938947799
-  rotation 0 1 0 0.3984146928204142
+  translation -0.2010497580148427 0 1.4314073636026539
+  rotation 0 1 0 2.9856
   children [
     Shape {
       appearance Appearance {
+        material Material {
+        }
       }
       geometry Sphere {
         radius 0.008
@@ -225,11 +308,13 @@ DEF fobos Solid {
   name "Fobos"
 }
 DEF deimos Solid {
-  translation 0.6974731211895027 0 -1.296081799994752
-  rotation 0 1 0 -0.7151853071795857
+  translation -0.1744032637418376 0 1.5403845125346813
+  rotation 0 1 0 2.488
   children [
     Shape {
       appearance Appearance {
+        material Material {
+        }
       }
       geometry Sphere {
         radius 0.008
@@ -239,11 +324,13 @@ DEF deimos Solid {
   name "Deimos"
 }
 DEF io Solid {
-  translation 0.2898079180453106 0 -2.0102115571856625
-  rotation 0 1 0 0.7968293856408284
+  translation -2.1336897803879697 0 0.2207470396261485
+  rotation 0 1 0 -0.3119853071795866
   children [
     Shape {
       appearance Appearance {
+        material Material {
+        }
       }
       geometry Sphere {
         radius 0.008
@@ -253,11 +340,13 @@ DEF io Solid {
   name "Io"
 }
 DEF europa Solid {
-  translation 0.18343679324817466 0 -2.229352030940152
-  rotation 0 1 0 -1.4303706143591715
+  translation -2.024186023529309 0 0.3920674846860675
+  rotation 0 1 0 -1.3071853071795863
   children [
     Shape {
       appearance Appearance {
+        material Material {
+        }
       }
       geometry Sphere {
         radius 0.008
@@ -267,11 +356,13 @@ DEF europa Solid {
   name "Europa"
 }
 DEF ganimedes Solid {
-  translation 0.11575826956672669 0 -2.184271240639406
-  rotation 0 1 0 2.625614692820415
+  translation -2.3461287740104426 0 0.233398759069325
+  rotation 0 1 0 -2.302385307179586
   children [
     Shape {
       appearance Appearance {
+        material Material {
+        }
       }
       geometry Sphere {
         radius 0.008
@@ -281,11 +372,13 @@ DEF ganimedes Solid {
   name "Ganimedes"
 }
 DEF calisto Solid {
-  translation 0.17745030145566473 0 -2.330274002218112
-  rotation 0 1 0 1.5120146928204141
+  translation -2.082046012986974 0 0.5560055191053433
+  rotation 0 1 0 -2.7999853071795866
   children [
     Shape {
       appearance Appearance {
+        material Material {
+        }
       }
       geometry Sphere {
         radius 0.008
@@ -295,11 +388,13 @@ DEF calisto Solid {
   name "Calisto"
 }
 DEF titan Solid {
-  translation 2.755440531078686 0 1.234030789148228
-  rotation 0 1 0 0.3984146928204142
+  translation -0.9027843958084163 0 2.407304114799991
+  rotation 0 1 0 2.9856
   children [
     Shape {
       appearance Appearance {
+        material Material {
+        }
       }
       geometry Sphere {
         radius 0.008
@@ -309,11 +404,13 @@ DEF titan Solid {
   name "Titan"
 }
 DEF encelado Solid {
-  translation 2.741883345272057 0 0.9368444203693638
-  rotation 0 1 0 -0.7151853071795857
+  translation -1.1503869950522094 0 2.28427525351285
+  rotation 0 1 0 2.488
   children [
     Shape {
       appearance Appearance {
+        material Material {
+        }
       }
       geometry Sphere {
         radius 0.008
@@ -323,8 +420,8 @@ DEF encelado Solid {
   name "Encelado"
 }
 DEF titania Solid {
-  translation -0.9639839928610384 0 -3.419606410551062
-  rotation 0 1 0 0.3984146928204142
+  translation -0.9122677437898632 0 3.2855957603865624
+  rotation 0 1 0 2.9856
   children [
     Shape {
       appearance Appearance {
@@ -337,8 +434,8 @@ DEF titania Solid {
   name "Titania"
 }
 DEF oberon Solid {
-  translation -0.8970929960686109 0 -3.107524100293402
-  rotation 0 1 0 0.3984146928204142
+  translation -0.6196471682070903 0 3.2124653755039714
+  rotation 0 1 0 2.9856
   children [
     Shape {
       appearance Appearance {
@@ -351,8 +448,8 @@ DEF oberon Solid {
   name "Oberon"
 }
 DEF triton Solid {
-  translation -3.784747101703797 0 -0.8043956650031933
-  rotation 0 1 0 0.3984146928204142
+  translation 0.34008170430692497 0 4.025229882121254
+  rotation 0 1 0 2.9856
   children [
     Shape {
       appearance Appearance {
@@ -365,8 +462,8 @@ DEF triton Solid {
   name "Triton"
 }
 DEF caronte Solid {
-  translation -2.7252885725246503 0 3.300020101481706
-  rotation 0 1 0 -1.8287853071795857
+  translation 2.3798354252395204 0 3.571950202313089
+  rotation 0 1 0 1.9904000000000002
   children [
     Shape {
       appearance Appearance {
@@ -377,4 +474,3254 @@ DEF caronte Solid {
     }
   ]
   name "Caronte"
+}
+DEF asteroide Solid {
+  translation 0.2418809160628941 0 -1.7327024623993843
+  rotation 0 1 0 2.6520881035753043
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "asteroide"
+}
+DEF asteroide_1 Solid {
+  translation 0.817446319560898 0 -1.530710488019061
+  rotation 0 1 0 4.007714499308731
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(12)"
+}
+DEF asteroide_2 Solid {
+  translation 0.1335573918025629 0 1.788153543069525
+  rotation 0 1 0 2.521595980047679
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(13)"
+}
+DEF asteroide_3 Solid {
+  translation 0.34902669594788055 0 -1.6875105366512613
+  rotation 0 1 0 3.4697813480536523
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(14)"
+}
+DEF asteroide_4 Solid {
+  translation -1.5885973492921597 0 -0.61142545111569
+  rotation 0 1 0 1.6316630785002675
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(15)"
+}
+DEF asteroide_5 Solid {
+  translation -0.6963442969318274 0 -1.634044875581918
+  rotation 0 1 0 1.19661237470251
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(16)"
+}
+DEF asteroide_6 Solid {
+  translation -1.6856221274144136 0 0.3086071008855951
+  rotation 0 1 0 0.4601121986579073
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(17)"
+}
+DEF asteroide_7 Solid {
+  translation -0.5971603036845277 0 1.617307571058722
+  rotation 0 1 0 1.1874713746902457
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(18)"
+}
+DEF asteroide_8 Solid {
+  translation 1.6639684834886945 0 -0.43374882158086964
+  rotation 0 1 0 3.14732067156858
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(19)"
+}
+DEF asteroide_9 Solid {
+  translation -1.2675407841525834 0 -1.1600315722480237
+  rotation 0 1 0 1.0011048093028916
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(20)"
+}
+DEF asteroide_10 Solid {
+  translation -0.2849204341490557 0 -1.7048740125614175
+  rotation 0 1 0 0.9776055939369415
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(21)"
+}
+DEF asteroide_11 Solid {
+  translation -0.9264644500464307 0 -1.534802539252975
+  rotation 0 1 0 2.937395362266753
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(22)"
+}
+DEF asteroide_12 Solid {
+  translation -1.0132267421347378 0 1.3780334580944902
+  rotation 0 1 0 2.663682028622823
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(23)"
+}
+DEF asteroide_13 Solid {
+  translation -0.16806482128957645 0 1.7680064069246326
+  rotation 0 1 0 0.9915369253327273
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(24)"
+}
+DEF asteroide_14 Solid {
+  translation -0.28903930442560183 0 1.681286579126251
+  rotation 0 1 0 4.011310729877981
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(25)"
+}
+DEF asteroide_15 Solid {
+  translation -0.6313884036717691 0 -1.5793346161866397
+  rotation 0 1 0 1.7968705630936332
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(26)"
+}
+DEF asteroide_16 Solid {
+  translation 0.29814691632979873 0 -1.7264099553872334
+  rotation 0 1 0 3.9787928717002683
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(27)"
+}
+DEF asteroide_17 Solid {
+  translation -1.7891599745106683 0 0.16486836471966695
+  rotation 0 1 0 4.9270528688045525
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(28)"
+}
+DEF asteroide_18 Solid {
+  translation -0.05723291311148105 0 -1.798890110191083
+  rotation 0 1 0 2.2578786273251974
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(29)"
+}
+DEF asteroide_19 Solid {
+  translation -0.8191699275248752 0 1.5122551328660645
+  rotation 0 1 0 2.2826300114427704
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(30)"
+}
+DEF asteroide_20 Solid {
+  translation 1.6634909283356167 0 0.4946081157702248
+  rotation 0 1 0 4.862774942859075
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(31)"
+}
+DEF asteroide_21 Solid {
+  translation 1.724485514307093 0 0.40826956327970976
+  rotation 0 1 0 0.5006565643944043
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(32)"
+}
+DEF asteroide_22 Solid {
+  translation 1.1571053821232171 0 1.3380313317919554
+  rotation 0 1 0 2.950568366753348
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(33)"
+}
+DEF asteroide_23 Solid {
+  translation -1.5088387904433513 0 -0.8452902216449255
+  rotation 0 1 0 6.096866296844741
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(34)"
+}
+DEF asteroide_24 Solid {
+  translation 1.4468811403433102 0 -0.9414200524281038
+  rotation 0 1 0 5.267697968379774
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(35)"
+}
+DEF asteroide_25 Solid {
+  translation -1.6710847558004376 0 -0.35419933689449806
+  rotation 0 1 0 4.618021141789582
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(36)"
+}
+DEF asteroide_26 Solid {
+  translation 0.8311838336687921 0 -1.5518370728374624
+  rotation 0 1 0 1.51222892307443
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(37)"
+}
+DEF asteroide_27 Solid {
+  translation 0.9035765363051661 0 1.4951001703000524
+  rotation 0 1 0 0.5878060025929954
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(38)"
+}
+DEF asteroide_28 Solid {
+  translation -1.7772953358101686 0 0.03649126476674446
+  rotation 0 1 0 5.199117329082872
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(39)"
+}
+DEF asteroide_29 Solid {
+  translation 1.6101571705995406 0 -0.7565505396974557
+  rotation 0 1 0 3.731526932843846
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(40)"
+}
+DEF asteroide_30 Solid {
+  translation -1.7227734038766824 0 0.48156841538190776
+  rotation 0 1 0 3.068688406235036
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(41)"
+}
+DEF asteroide_31 Solid {
+  translation 1.7293838014239449 0 -0.36048970860694673
+  rotation 0 1 0 3.939307010316664
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(42)"
+}
+DEF asteroide_32 Solid {
+  translation -1.010711856020534 0 1.3775524172392717
+  rotation 0 1 0 2.9940549967692482
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(43)"
+}
+DEF asteroide_33 Solid {
+  translation 1.6883894621238649 0 -0.5687417507803348
+  rotation 0 1 0 4.9215439704168285
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(44)"
+}
+DEF asteroide_34 Solid {
+  translation -0.5660235490132453 0 -1.628841319619
+  rotation 0 1 0 5.85611328030185
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(45)"
+}
+DEF asteroide_35 Solid {
+  translation 1.4196520086216289 0 -1.0346328414670787
+  rotation 0 1 0 5.332337645020842
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(46)"
+}
+DEF asteroide_36 Solid {
+  translation 0.7973887908240279 0 1.570680361347486
+  rotation 0 1 0 0.3376318179217006
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(47)"
+}
+DEF asteroide_37 Solid {
+  translation 1.5538951721259135 0 -0.8583484209830132
+  rotation 0 1 0 5.842098907368088
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(48)"
+}
+DEF asteroide_38 Solid {
+  translation -1.387003922447014 0 -0.9876348622578467
+  rotation 0 1 0 3.164317497236045
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(49)"
+}
+DEF asteroide_39 Solid {
+  translation -0.17278033450554395 0 -1.712123904105986
+  rotation 0 1 0 6.042149970528377
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(50)"
+}
+DEF asteroide_40 Solid {
+  translation -1.584233486428287 0 0.7657612170189413
+  rotation 0 1 0 2.80135853782331
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(51)"
+}
+DEF asteroide_41 Solid {
+  translation 1.4211832881105333 0 0.9549212663179419
+  rotation 0 1 0 5.091937550429521
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(52)"
+}
+DEF asteroide_42 Solid {
+  translation 0.9298888668305679 0 1.4382626566286745
+  rotation 0 1 0 2.9223253379175986
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(53)"
+}
+DEF asteroide_43 Solid {
+  translation -1.2074518844907365 0 -1.2473327454614846
+  rotation 0 1 0 3.1750873896815692
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(54)"
+}
+DEF asteroide_44 Solid {
+  translation 1.407307863226876 0 -0.9884542989249776
+  rotation 0 1 0 1.9652537172951126
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(55)"
+}
+DEF asteroide_45 Solid {
+  translation 1.037779850512362 0 -1.4674622487221272
+  rotation 0 1 0 1.2059086917442627
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(56)"
+}
+DEF asteroide_46 Solid {
+  translation -1.7769041935943668 0 -0.21796166335322978
+  rotation 0 1 0 1.731455021633092
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(57)"
+}
+DEF asteroide_47 Solid {
+  translation -0.5767403784216728 0 1.6377828951998958
+  rotation 0 1 0 4.76810084144764
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(58)"
+}
+DEF asteroide_48 Solid {
+  translation 1.7474826097251142 0 -0.3203375355984712
+  rotation 0 1 0 4.0961919403229405
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(59)"
+}
+DEF asteroide_49 Solid {
+  translation -0.550362831882573 0 -1.6410082758782651
+  rotation 0 1 0 1.2077768308494656
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(60)"
+}
+DEF asteroide_0 Solid {
+  translation -4.121144881223661 0.77 2.6284088037019164
+  rotation 0 1 0 4.094727035989894
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(11)"
+}
+DEF asteroide_1 Solid {
+  translation 1.4734548014723825 0.77 4.615387712568994
+  rotation 0 1 0 1.985395362314989
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(61)"
+}
+DEF asteroide_2 Solid {
+  translation 1.5375301527735183 0.77 -4.564202036663641
+  rotation 0 1 0 2.456533198219418
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(62)"
+}
+DEF asteroide_3 Solid {
+  translation 2.4717568171594464 0.77 4.307054537102761
+  rotation 0 1 0 3.9519737638875387
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(63)"
+}
+DEF asteroide_4 Solid {
+  translation 3.1789099711966893 0.77 -3.613926660111139
+  rotation 0 1 0 6.21415452762149
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(64)"
+}
+DEF asteroide_5 Solid {
+  translation -4.877570136182871 0.77 0.11025706749552745
+  rotation 0 1 0 3.4380599324214765
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(65)"
+}
+DEF asteroide_6 Solid {
+  translation 2.3213662236475527 0.77 4.4081305307393945
+  rotation 0 1 0 4.188662099366985
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(66)"
+}
+DEF asteroide_7 Solid {
+  translation -0.5835950220617043 0.77 -4.91729539177533
+  rotation 0 1 0 2.5594798617951846
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(67)"
+}
+DEF asteroide_8 Solid {
+  translation -4.120668783437238 0.77 2.6056601293834727
+  rotation 0 1 0 2.1824995132085356
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(68)"
+}
+DEF asteroide_9 Solid {
+  translation -1.0519499926627136 0.77 4.781706938915583
+  rotation 0 1 0 1.3574537787456424
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(69)"
+}
+DEF asteroide_10 Solid {
+  translation 2.8715565723254195 0.77 -4.009698716251801
+  rotation 0 1 0 3.9356298005223938
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(70)"
+}
+DEF asteroide_11 Solid {
+  translation 1.8423585661548179 0.77 -4.466587047122928
+  rotation 0 1 0 0.5974804701203381
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(71)"
+}
+DEF asteroide_12 Solid {
+  translation 3.830818390191286 0.77 3.148456844816132
+  rotation 0 1 0 1.885572215428666
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(72)"
+}
+DEF asteroide_13 Solid {
+  translation -2.071620190703415 0.77 4.353110443894933
+  rotation 0 1 0 0.6582389015692321
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(73)"
+}
+DEF asteroide_14 Solid {
+  translation -3.5774349440708044 0.77 3.3091857614630684
+  rotation 0 1 0 5.565825432662798
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(74)"
+}
+DEF asteroide_15 Solid {
+  translation -2.7522493579510328 0.77 -4.11700085576249
+  rotation 0 1 0 6.096771049859126
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(75)"
+}
+DEF asteroide_16 Solid {
+  translation -0.25383384953464344 0.77 -4.7954473973510385
+  rotation 0 1 0 0.32917134292385136
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(76)"
+}
+DEF asteroide_17 Solid {
+  translation 0.2657431726091741 0.77 4.860736049593858
+  rotation 0 1 0 1.3906637125469445
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(77)"
+}
+DEF asteroide_18 Solid {
+  translation 2.3022384705913597 0.77 -4.296630153142337
+  rotation 0 1 0 6.1978700592672835
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(78)"
+}
+DEF asteroide_19 Solid {
+  translation 3.2502095416206713 0.77 3.5668103973854572
+  rotation 0 1 0 5.0810569294837125
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(79)"
+}
+DEF asteroide_20 Solid {
+  translation 4.618916569282776 0.77 1.8696408688710904
+  rotation 0 1 0 0.989513690422343
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(80)"
+}
+DEF asteroide_21 Solid {
+  translation -3.731350295866319 0.77 3.1429871853914393
+  rotation 0 1 0 0.6839686463482805
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(81)"
+}
+DEF asteroide_22 Solid {
+  translation -3.7248196976369528 0.77 3.202039105996737
+  rotation 0 1 0 6.0428779358833395
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(82)"
+}
+DEF asteroide_23 Solid {
+  translation 4.858296644030595 0.77 0.818105307092714
+  rotation 0 1 0 5.784501904317079
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(83)"
+}
+DEF asteroide_24 Solid {
+  translation 4.737534055104912 0.77 -1.401246561155554
+  rotation 0 1 0 5.525121286889885
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(84)"
+}
+DEF asteroide_25 Solid {
+  translation 2.3833733494176865 0.77 -4.259569638956525
+  rotation 0 1 0 5.9946076380668725
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(85)"
+}
+DEF asteroide_26 Solid {
+  translation 0.8535134881584313 0.77 4.796780132722187
+  rotation 0 1 0 6.057875271775322
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(86)"
+}
+DEF asteroide_27 Solid {
+  translation 0.5071611401892122 0.77 4.79691899010735
+  rotation 0 1 0 1.1705583442476148
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(87)"
+}
+DEF asteroide_28 Solid {
+  translation 4.4643672047180045 0.77 -1.9142406340005589
+  rotation 0 1 0 3.577882202253497
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(88)"
+}
+DEF asteroide_29 Solid {
+  translation -3.2136751100823457 0.77 -3.824625114917278
+  rotation 0 1 0 3.7539023549744317
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(89)"
+}
+DEF asteroide_30 Solid {
+  translation -0.8602776119981365 0.77 4.826424499624005
+  rotation 0 1 0 4.72303318669237
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(90)"
+}
+DEF asteroide_31 Solid {
+  translation -3.184838593772557 0.77 3.683797645258862
+  rotation 0 1 0 0.026818969165819342
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(91)"
+}
+DEF asteroide_32 Solid {
+  translation 3.382491592572909 0.77 3.4394977767326744
+  rotation 0 1 0 6.262324194161787
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(92)"
+}
+DEF asteroide_33 Solid {
+  translation 3.3896869988494123 0.77 -3.56148368402244
+  rotation 0 1 0 5.414333271456614
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(93)"
+}
+DEF asteroide_34 Solid {
+  translation -4.953275833436296 0.77 -0.0034650745211185535
+  rotation 0 1 0 3.350536253691746
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(94)"
+}
+DEF asteroide_35 Solid {
+  translation -3.1877167538369156 0.77 3.6457415734986887
+  rotation 0 1 0 5.141418766081083
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(95)"
+}
+DEF asteroide_36 Solid {
+  translation -4.934684814273281 0.77 0.416851807625055
+  rotation 0 1 0 5.0768426493864425
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(96)"
+}
+DEF asteroide_37 Solid {
+  translation 3.2944450353581867 0.77 3.568072797907727
+  rotation 0 1 0 3.129545299355316
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(97)"
+}
+DEF asteroide_38 Solid {
+  translation -4.795916765128866 0.77 -1.1870220905712345
+  rotation 0 1 0 4.61660475304286
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(98)"
+}
+DEF asteroide_39 Solid {
+  translation -2.0553120372222087 0.77 4.384190274001359
+  rotation 0 1 0 2.5671603284080704
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(99)"
+}
+DEF asteroide_40 Solid {
+  translation -4.628506095624287 0.77 -1.7340686047043983
+  rotation 0 1 0 2.4413009066944538
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(100)"
+}
+DEF asteroide_41 Solid {
+  translation -4.743629272115913 0.77 0.989473636119705
+  rotation 0 1 0 4.809087819462622
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(101)"
+}
+DEF asteroide_42 Solid {
+  translation -4.741180055791744 0.77 -0.7720229384532656
+  rotation 0 1 0 3.335027371543309
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(102)"
+}
+DEF asteroide_43 Solid {
+  translation 1.1308462572472524 0.77 -4.666746979392865
+  rotation 0 1 0 5.108456687817057
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(103)"
+}
+DEF asteroide_44 Solid {
+  translation -3.915818386315203 0.77 2.841706104462666
+  rotation 0 1 0 4.101696551056493
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(104)"
+}
+DEF asteroide_45 Solid {
+  translation 2.0960996842821893 0.77 -4.42731162649549
+  rotation 0 1 0 2.7106413367227566
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(105)"
+}
+DEF asteroide_46 Solid {
+  translation 2.8838809882640337 0.77 3.9998202961669005
+  rotation 0 1 0 0.8030198482165746
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(106)"
+}
+DEF asteroide_47 Solid {
+  translation -2.5900176273752815 0.77 4.149556186927967
+  rotation 0 1 0 3.067523167628773
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(107)"
+}
+DEF asteroide_48 Solid {
+  translation -4.9472042885725935 0.77 -0.7118208251594839
+  rotation 0 1 0 2.1714319063027445
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(108)"
+}
+DEF asteroide_49 Solid {
+  translation 1.548682779117836 0.77 4.650761998584326
+  rotation 0 1 0 0.49630971609715485
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(109)"
+}
+DEF asteroide_50 Solid {
+  translation 2.7242305812580714 0.77 -4.00221560634545
+  rotation 0 1 0 2.293537459460006
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(110)"
+}
+DEF asteroide_51 Solid {
+  translation -3.665163084987404 0.77 -3.1268126301724637
+  rotation 0 1 0 1.8111535907045473
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(111)"
+}
+DEF asteroide_52 Solid {
+  translation -4.944403927774514 0.77 0.7088156694610092
+  rotation 0 1 0 2.5890293649237788
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(112)"
+}
+DEF asteroide_53 Solid {
+  translation -4.838366937274261 0.77 -0.5343989446265286
+  rotation 0 1 0 3.407971696508259
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(113)"
+}
+DEF asteroide_54 Solid {
+  translation -0.29510466301564764 0.77 -4.9519292219778634
+  rotation 0 1 0 1.7565854213120649
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(114)"
+}
+DEF asteroide_55 Solid {
+  translation 4.344960800813295 0.77 -2.1610569083577937
+  rotation 0 1 0 0.8219111278935257
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(115)"
+}
+DEF asteroide_56 Solid {
+  translation 2.6109936161182326 0.77 -4.06681822637463
+  rotation 0 1 0 3.1414506137268425
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(116)"
+}
+DEF asteroide_57 Solid {
+  translation 4.951422115284433 0.77 0.5317927542960242
+  rotation 0 1 0 5.814929143877458
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(117)"
+}
+DEF asteroide_58 Solid {
+  translation -4.452751643098355 0.77 2.17558782895222
+  rotation 0 1 0 0.4703577032414873
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(118)"
+}
+DEF asteroide_59 Solid {
+  translation -0.963266292402283 0.77 -4.851055019447631
+  rotation 0 1 0 6.2046718420560865
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(119)"
+}
+DEF asteroide_60 Solid {
+  translation 4.481151080637391 0.77 -1.720724406721335
+  rotation 0 1 0 4.166785003415042
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(120)"
+}
+DEF asteroide_61 Solid {
+  translation -2.9139327803494335 0.77 -4.010356867133637
+  rotation 0 1 0 3.1284310831676527
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(121)"
+}
+DEF asteroide_62 Solid {
+  translation -0.4142879021391783 0.77 -4.829550897397008
+  rotation 0 1 0 4.363804000432172
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(122)"
+}
+DEF asteroide_63 Solid {
+  translation -4.898713592426879 0.77 0.2807247751414757
+  rotation 0 1 0 2.8204804491380684
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(123)"
+}
+DEF asteroide_64 Solid {
+  translation -4.791010201010654 0.77 -0.8946273577493005
+  rotation 0 1 0 2.7937943321427015
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(124)"
+}
+DEF asteroide_65 Solid {
+  translation 2.4881499722110525 0.77 -4.117626913986377
+  rotation 0 1 0 1.2921437405701133
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(125)"
+}
+DEF asteroide_66 Solid {
+  translation 4.178399621794783 0.77 2.498135724656075
+  rotation 0 1 0 2.0372275292525828
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(126)"
+}
+DEF asteroide_67 Solid {
+  translation 4.840572449654724 0.77 -0.6006279788369862
+  rotation 0 1 0 3.979567454729981
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(127)"
+}
+DEF asteroide_68 Solid {
+  translation 2.702272394979014 0.77 4.1587102087243135
+  rotation 0 1 0 1.107552260389201
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(128)"
+}
+DEF asteroide_69 Solid {
+  translation -0.13148276813542611 0.77 4.800773808412796
+  rotation 0 1 0 4.364767551712029
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(129)"
+}
+DEF asteroide_70 Solid {
+  translation -1.5642742217898276 0.77 4.543545490031046
+  rotation 0 1 0 2.7123311165799464
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(130)"
+}
+DEF asteroide_71 Solid {
+  translation 2.726470842024536 0.77 -4.0597549903184795
+  rotation 0 1 0 1.134475931388562
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(131)"
+}
+DEF asteroide_72 Solid {
+  translation -4.454271260035131 0.77 -2.100716421563081
+  rotation 0 1 0 1.2329398110203291
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(132)"
+}
+DEF asteroide_73 Solid {
+  translation 4.2161885344977 0.77 2.3528989619133722
+  rotation 0 1 0 4.327167336225746
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(133)"
+}
+DEF asteroide_74 Solid {
+  translation 1.7797852653140085 0.77 4.600401917389722
+  rotation 0 1 0 6.080081015403841
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(134)"
+}
+DEF asteroide_75 Solid {
+  translation 0.779827057795443 0.77 -4.920405935401909
+  rotation 0 1 0 5.647414805257882
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(135)"
+}
+DEF asteroide_76 Solid {
+  translation -0.1666734365751618 0.77 -4.9091841660987825
+  rotation 0 1 0 1.9198917126186055
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(136)"
+}
+DEF asteroide_77 Solid {
+  translation 4.8615502250583935 0.77 -0.39335901179081173
+  rotation 0 1 0 1.5582610978908173
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(137)"
+}
+DEF asteroide_78 Solid {
+  translation 0.09051344770448046 0.77 -4.896561159427349
+  rotation 0 1 0 0.13329193981986653
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(138)"
+}
+DEF asteroide_79 Solid {
+  translation 4.192093936968223 0.77 -2.4143011239227863
+  rotation 0 1 0 0.5811781209314613
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(139)"
+}
+DEF asteroide_80 Solid {
+  translation 4.44265181563242 0.77 2.1047614801138863
+  rotation 0 1 0 2.533397408063628
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(140)"
+}
+DEF asteroide_81 Solid {
+  translation -4.8392004645642555 0.77 0.2065484435281256
+  rotation 0 1 0 2.546750307743182
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(141)"
+}
+DEF asteroide_82 Solid {
+  translation 4.910596217280722 0.77 0.7566155745563947
+  rotation 0 1 0 2.5596791569351867
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(142)"
+}
+DEF asteroide_83 Solid {
+  translation 4.763383894921711 0.77 -0.8364573162205327
+  rotation 0 1 0 5.800616658640283
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(143)"
+}
+DEF asteroide_84 Solid {
+  translation -1.2111914700298512 0.77 4.732383867642582
+  rotation 0 1 0 2.4239017731353636
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(144)"
+}
+DEF asteroide_85 Solid {
+  translation -4.701429205610051 0.77 1.2954648425693736
+  rotation 0 1 0 4.349382407769173
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(145)"
+}
+DEF asteroide_86 Solid {
+  translation -1.9291118897846495 0.77 -4.538808001985978
+  rotation 0 1 0 4.543870637992867
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(146)"
+}
+DEF asteroide_87 Solid {
+  translation -2.5639873009573617 0.77 -4.142222417531495
+  rotation 0 1 0 0.39632718274688694
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(147)"
+}
+DEF asteroide_88 Solid {
+  translation -1.8182742625872677 0.77 -4.5626109152093415
+  rotation 0 1 0 3.358136407799834
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(148)"
+}
+DEF asteroide_89 Solid {
+  translation -4.93658724381778 0.77 0.6489152103344631
+  rotation 0 1 0 5.299147984537394
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(149)"
+}
+DEF asteroide_90 Solid {
+  translation 1.1890702322854163 0.77 -4.663415388245031
+  rotation 0 1 0 2.793146491870797
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(150)"
+}
+DEF asteroide_91 Solid {
+  translation -3.2491078039660497 0.77 3.725808006794846
+  rotation 0 1 0 3.3698011855531016
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(151)"
+}
+DEF asteroide_92 Solid {
+  translation 3.943962790683101 0.77 -2.892924648049082
+  rotation 0 1 0 4.248528280265743
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(152)"
+}
+DEF asteroide_93 Solid {
+  translation -4.068363074996432 0.77 2.739662203589776
+  rotation 0 1 0 4.515773166815992
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(153)"
+}
+DEF asteroide_94 Solid {
+  translation 4.0500879465343145 0.77 -2.609135862018591
+  rotation 0 1 0 4.148966277303156
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(154)"
+}
+DEF asteroide_95 Solid {
+  translation 0.14830755615993887 0.77 4.95110812310524
+  rotation 0 1 0 1.3358435896760275
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(155)"
+}
+DEF asteroide_96 Solid {
+  translation -2.2366047308510155 0.77 -4.252084360991027
+  rotation 0 1 0 3.5880278189630146
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(156)"
+}
+DEF asteroide_97 Solid {
+  translation 3.1294427733791728 0.77 -3.7089650950293627
+  rotation 0 1 0 0.6982726008519649
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(157)"
+}
+DEF asteroide_98 Solid {
+  translation -1.5451810172669074 0.77 -4.582028379485874
+  rotation 0 1 0 1.5453841343983024
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(158)"
+}
+DEF asteroide_99 Solid {
+  translation -0.2527021965017413 0.77 -4.91078019564818
+  rotation 0 1 0 2.7581304669913025
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.5 0.5 0.5
+        }
+        texture ImageTexture {
+          url [
+            "../img/asteroide.jpg"
+          ]
+        }
+      }
+      geometry Sphere {
+        radius 0.01
+      }
+    }
+  ]
+  name "solid(159)"
 }

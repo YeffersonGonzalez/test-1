@@ -2,7 +2,7 @@ from controller import Supervisor
 import numpy as np
 
 def rotation_matrix_y(theta):
-    """Rotación 3x3 sobre eje Y"""
+    """Rotación 3x3 sobre eje """
     c = np.cos(theta)
     s = np.sin(theta)
     return np.array([
@@ -17,22 +17,34 @@ def homogeneous_matrix(R, t):
     H[:3, :3] = R
     H[:3, 3] = t
     return H
+def precession_matrix(phi):
+    """Aplica precesión al eje de rotación"""
+    c = np.cos(phi)
+    s = np.sin(phi)
+    return np.array([
+        [1,  0,  0],
+        [0,  c, -s],
+        [0,  s,  c]
+    ])    
 
 # Iniciar supervisor
 robot = Supervisor()
 timestep = int(robot.getBasicTimeStep())
 
-#Diccionario de planetas con: (nodo, semieje mayor a, semieje menor b, velocidad órbita, velocidad rotación)
+# Diccionario de planetas con: (nodo, semieje mayor a, semieje menor b, velocidad órbita, velocidad rotación, velocidad precesión)
 planetas = {
-    "mercurio":  (robot.getFromDef("mercurio"), 0.40, 0.38, 1.6, 0.017),
-    "venus":     (robot.getFromDef("venus"),    0.70, 0.69, 1.2, -0.004),
-    "tierra":    (robot.getFromDef("tierra"),   1.00, 0.98, 1.0, 0.26),
-    "marte":     (robot.getFromDef("marte"),    1.50, 1.47, 0.8, 0.24),
-    "jupiter":   (robot.getFromDef("jupiter"),  2.20, 2.15, 0.5, 2.0),
-    "saturno":   (robot.getFromDef("saturno"),  2.80, 2.72, 0.3, 1.7),
-    "urano":     (robot.getFromDef("urano"),    3.50, 3.40, 0.2, 1.3),
-    "neptuno":   (robot.getFromDef("neptuno"),  4.00, 3.90, 0.15, 1.2),
-    "pluton":    (robot.getFromDef("pluton"),   4.50, 4.25, 0.1, 0.07)
+    "mercurio":  (robot.getFromDef("mercurio"), 0.40, 0.38, 2, 0.017, 0.002),
+    "venus":     (robot.getFromDef("venus"),    0.70, 0.69, 1.2, -0.004, 0.0015),
+    "tierra":    (robot.getFromDef("tierra"),   1.00, 0.98, 1.0, 0.26, 0.0024),
+    "marte":     (robot.getFromDef("marte"),    1.50, 1.47, 0.8, 0.24, 0.002),
+    "jupiter":   (robot.getFromDef("jupiter"),  2.20, 2.15, 0.3, 1.4, 0.001),
+    "saturno":   (robot.getFromDef("saturno"),  2.80, 2.72, 0.2, 1.3, 0.0008),
+    "urano":     (robot.getFromDef("urano"),    3.50, 3.40, 0.18, 1.1, 0.0005),
+    "neptuno":   (robot.getFromDef("neptuno"),  4.00, 3.90, 0.15, 1.1, 0.0003),
+    "pluton":    (robot.getFromDef("pluton"),   4.50, 4.25, 0.1, 0.07, 0.0001),
+    "anillosaturno":    (robot.getFromDef("anillosaturno"),   2.80, 2.72, 0.2, 0, 0.0008),
+    "anillourano":     (robot.getFromDef("anillourano"),    3.50, 3.40, 0.18, 0.5, 0.0005),
+    "anillonep":   (robot.getFromDef("anillonep"),  4.00, 3.90, 0.15, 0.2, 0.0003)
 }
 
 # Diccionario de lunas con: (nodo,  radio, velocidad órbita, velocidad rotación)
@@ -62,10 +74,8 @@ lunas = {
     "triton": (robot.getFromDef("triton"), 0.14, 1.4, 0.3),
 
     # Luna de Plutón
-    "caronte": (robot.getFromDef("caronte"), 0.07, 2.2, 0.2),
+    "caronte": (robot.getFromDef("caronte"), 0.07, 2.2, 0.2)
 }
-
-
 
 # Constantes
 #radius_orbit = 0.6   # radio de la órbita de 2 alrededor de 1
@@ -80,7 +90,7 @@ while robot.step(timestep) != -1:
     sol_position = np.array(sol.getField("translation").getSFVec3f())
     H_wa = homogeneous_matrix(np.eye(3), sol_position)
 
-    for nombre, (nodo, a, b, velocidad, v_rotacion) in planetas.items():
+    for nombre, (nodo, a, b, velocidad, v_rotacion, v_precesion) in planetas.items():
         theta = velocidad * t
         x = a * np.cos(theta)
         z = b * np.sin(theta)
@@ -89,9 +99,13 @@ while robot.step(timestep) != -1:
         nodo.getField("translation").setSFVec3f(pos_global.tolist())
 
         angulo_giro = v_rotacion * t
-        nodo.getField("rotation").setSFRotation([0, 1, 0, angulo_giro])
+        angulo_precesion = v_precesion * t
+        precesion = precession_matrix(angulo_precesion)
 
-    # Obtener posición de la tierra
+        # Aplicar precesión a la rotación del planeta
+        nodo.getField("rotation").setSFRotation([precesion[0,1], precesion[1,1], precesion[2,1], angulo_giro])
+  
+    # Obtener posición 
     pos_planetas = {
     "marte": np.array(robot.getFromDef("marte").getField("translation").getSFVec3f()),
     "jupiter": np.array(robot.getFromDef("jupiter").getField("translation").getSFVec3f()),
@@ -100,6 +114,9 @@ while robot.step(timestep) != -1:
     "urano": np.array(robot.getFromDef("urano").getField("translation").getSFVec3f()),
     "neptuno": np.array(robot.getFromDef("neptuno").getField("translation").getSFVec3f()),
     "pluton": np.array(robot.getFromDef("pluton").getField("translation").getSFVec3f()),
+    "anillosaturno": np.array(robot.getFromDef("anillosaturno").getField("translation").getSFVec3f()),
+    "anillonep": np.array(robot.getFromDef("anillonep").getField("translation").getSFVec3f()),
+    "anillourano": np.array(robot.getFromDef("anillourano").getField("translation").getSFVec3f())
     }
 
     for nombre, (nodo, radio, velocidad, v_rotacion) in lunas.items():
